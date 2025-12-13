@@ -1,0 +1,23 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Default Ultralytics settings for ByteTrack tracker when using mode="track"
+# For documentation and examples see https://docs.ultralytics.com/modes/track/
+# For ByteTrack source code see https://github.com/ifzhang/ByteTrack
+
+# tracker_type: bytetrack # tracker type, ['botsort', 'bytetrack']
+# track_high_thresh: 0.25 # threshold for the first association
+# track_low_thresh: 0.1 # threshold for the second association
+# new_track_thresh: 0.25 # threshold for init new track if the detection does not match any tracks
+# track_buffer: 30 # buffer to calculate the time when to remove tracks
+# match_thresh: 0.8 # threshold for matching tracks
+# fuse_score: True # Whether to fuse confidence scores with the iou distances before matching
+# # min_box_area: 10  # threshold for min box areas(for tracker evaluation, not used for now)
+
+tracker_type: bytetrack
+track_high_thresh: 0.2  # 降低一级关联阈值（原0.25），保留更多低置信度检测
+track_low_thresh: 0.05  # 降低二级关联阈值（原0.1），增强遮挡时的关联容错
+new_track_thresh: 0.2  # 降低新轨迹初始化阈值（原0.25），避免漏检后重新创建ID
+track_buffer: 60  # 增大轨迹缓存（原30），延长目标丢失后的保留时间（如遮挡场景）
+match_thresh: 0.7  # 降低匹配阈值（原0.8），允许更大的位置变化（如快速移动目标）
+fuse_score: True  # 保持启用，融合置信度和IOU提升匹配精度
+# min_box_area: 5  # 启用并增大最小框面积（原注释），过滤噪声小框干扰
