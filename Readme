@@ -1,0 +1,60 @@
+# Underwater Optical Docking Based on YOLO Detection
+
+This repository contains the implementation of an underwater optical docking system for Autonomous Underwater Vehicles (AUVs).  
+The project integrates **YOLO-based optical beacon detection**, **geometric pose estimation for docking**, and **light propagation simulation** for algorithm validation.
+
+The codebase is designed to support **experimental reproduction** and **engineering-oriented research**, rather than a fully autonomous control system.
+
+---
+
+## Project Structure
+
+---
+
+## System Overview
+
+The overall processing pipeline is:
+
+
+1. **Beacon Detection (YOLO)**  
+   A lightweight YOLO-based detector identifies beacon positions in image coordinates.
+
+2. **Pose Estimation (`docking/`)**  
+   The detected beacon layout is matched against a predefined geometric configuration to estimate:
+   - Relative position
+   - Relative orientation (yaw / pitch / roll if applicable)
+
+3. **Light Simulation (Optional)**  
+   The `Lightsimulation/` module provides synthetic optical data for algorithm validation under controlled underwater conditions.
+
+---
+
+## Docking Pose Estimation (`docking/`)
+
+The `docking` folder contains the core docking algorithm:
+
+- Input:
+  - 2D image coordinates of detected beacons
+  - Camera intrinsic parameters
+  - Known beacon layout geometry
+
+- Output:
+  - Estimated relative pose of the AUV with respect to the docking station
+
+The algorithm focuses on **robust geometric consistency** rather than complex optimization, making it suitable for real-time onboard deployment.
+
+---
+
+## Light Simulation (`Lightsimulation/`)
+
+This module provides:
+- Optical beacon layout simulation
+---
+
+## Environment Setup
+
+### Python Requirements
+
+```bash
+python >= 3.8
+pip install -r requirements.txt
